@@ -1,23 +1,25 @@
 <div class="container">
   <div class="row">
-    <p class="p-1 mb-2 bg-light text-dark"><strong>管理者</strong>ログイン</p>
+    <div class="col-10 my-5">
+    <h4 class="bg-secondary px-3 d-inline-flex bg-opacity-25"><strong>管理者</strong>ログイン</h4>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <div class="form-group row">
+    <div class="col-9 mx-auto">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :"メールアドレス" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field row mb-3" >
+        <%= f.label :"メールアドレス", class: "col-2" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control col-6 offset-1" %>
       </div>
 
-      <div class="field">
-        <%= f.label :"パスワード" %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="field row mb-5">
+        <%= f.label :"パスワード", class: "col-2" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-6 offset-1" %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      <div class="actions row">
+        <%= f.submit "ログイン", class: "btn btn-primary offset-3 px-11" %>
       </div>
     <% end %>
 
