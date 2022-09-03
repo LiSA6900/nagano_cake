@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 my-5">
+    <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">商品一覧</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table col-4">
+      <thead style="background-color: #F5F5F5;">
+        <tr>
+          <th class="text-center">商品ID</th>
+          <th class="text-center">商品名</th>
+          <th class="text-center">税抜価格</th>
+          <th class="text-center">ジャンル</th>
+          <th class="text-center">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= genre.id %></td>
+          <td><%= is_active %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

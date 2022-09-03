@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 my-5">
+    <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">商品新規登録</h4>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-7 mx-auto">
+      <%= form_with model: @item, url:admin_items_path do |f| %>
+        <div class="field row mb-2" >
+          <label for="itemImage">商品画像</label>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+        <div class="field row mb-2" >
+          <label for="itemName">商品名</label>
+          <%= f.text_field :name, placeholder: "商品名" %>
+        </div>
+        <div class="field row mb-2" >
+          <label for="itemintroduction", class=>商品説明</label>
+          <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
+        </div>
+        <div class="field row mb-2" >
+          <label for="itemGenre">ジャンル</label>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %>
+        </div>
+        <div class="field row mb-2" >
+          <label for="itemPrice">税抜価格</label>
+            <%= text_field :price, placeholder: "1000" %><span>円</span>
+        </div>
+        <div class="field row mb-2" >
+          <label for="itemStatus", class="mr-3">販売ステータス</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1">販売中</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline mb-4">
+            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline2">販売停止中</label>
+          </div>
+        </div>
+        <div class="col-3 field mb-2 mx-auto">
+          <P><%= f.submit '新規登録', class: "btn btn-success font-weight-bold px-4" %></P>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
