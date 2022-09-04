@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-7 my-5">
-    <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">商品新規登録</h4>
+    <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">商品編集</h4>
     </div>
   </div>
 
   <div class="form-group row">
     <div class="col-8 mx-auto">
-      <%= form_with model: @item, url:admin_items_path do |f| %>
+      <%= form_with model: @item, url:admin_item_path(@item.id), method: :patch do |f| %>
         <div class="row" >
           <div class="col-3">
           <label for="itemImage">商品画像</label>
@@ -26,7 +26,7 @@
         </div>
         <div class="row" >
           <div class="col-3">
-          <label for="itemintroduction", class=>商品説明</label>
+          <label for="itemintroduction">商品説明</label>
           </div>
           <div class="col-5 mb-2">
           <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", style: "width:100%;" %>
@@ -66,11 +66,10 @@
         </div>
         <div class="row">
         <div class="col-4 mx-auto">
-          <%= f.submit '新規登録', class: "btn btn-success font-weight-bold px-4" %>
+          <%= f.submit '変更を保存', class: "btn btn-success font-weight-bold px-4" %>
         </div>
         </div>
       <% end %>
     </div>
   </div>
-
 </div>
