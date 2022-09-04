@@ -28,7 +28,7 @@
              <span><%= item.name %></span>
             <% end %>
           </td>
-          <td><%= item.price %></td>
+          <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
           <td>
             <% if item.is_active %>
