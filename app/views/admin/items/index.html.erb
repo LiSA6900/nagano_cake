@@ -9,7 +9,7 @@
   </div>
 
   <div class="row">
-    <table class="table col-10">
+    <table class="table col-9  mx-auto">
       <thead style="background-color: #F5F5F5;">
         <tr>
           <th>商品ID</th>
@@ -31,7 +31,7 @@
           <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
           <td>
-            <% if item.is_active %>
+            <% if item.is_active == true %>
               <span style="color: green;", class= "font-weight-bold">販売中</span>
             <% else %>
               <span style="color: #C0C0C0;", class= "font-weight-bold">販売停止中</span>
