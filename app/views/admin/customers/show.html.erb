@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-7 my-5">
-      <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3"><%= customer.last_name %><%= customer.first_name %>さんの会員詳細</h4>
+      <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h4>
     </div>
   </div>
 
@@ -46,15 +46,20 @@
             <% end %>
           </td>
         </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div class="row">
+            <div class="col-4">
+              <%= link_to '編集する', edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %>
+            </div>
+            <div class="col-6">
+              <%= link_to '注文履歴一覧を見る', edit_admin_item_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %>
+            </div>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
-  </div>
-  <div class="row">
-    <div class="col-2 mx-auto">
-      <%= link_to '編集する', edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %>
-    </div>
-    <div class="col-2 mx-auto">
-      <%= link_to '注文履歴一覧を見る', edit_admin_item_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %>
-    </div>
   </div>
 </div>

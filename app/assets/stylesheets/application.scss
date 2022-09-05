@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main_image{
+  background-image: image-url("cake.jpeg");
+  height: 400px;
+  background-size:cover;
+  background-position:center;
+  position: relative;
+}
+
+.main-contents{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+

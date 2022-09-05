@@ -54,14 +54,11 @@
           <label for="itemStatus">販売ステータス</label>
           </div>
           <div class="col-5 mb-3 mb-2">
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline1">販売中</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline mb-4">
-            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline2">販売停止中</label>
-          </div>
+            <%= f.radio_button :is_active, "ture" %>
+            <%= f.label :is_active, "販売中" %>
+
+            <%= f.radio_button :is_active, "false" %>
+            <%= f.label :is_active, "販売停止中" %>
           </div>
         </div>
         <div class="row">
