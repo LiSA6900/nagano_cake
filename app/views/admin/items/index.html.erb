@@ -1,15 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-7 my-5">
+  <div class="row mr-0">
+    <div class="col-10 mt-5 mb-2">
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">商品一覧</h4>
-      <button type="button" class="btn btn-light rounded-circle p-0 shadow mb-5 bg-white rounded font-weight-bold" style="width:3rem;height:3rem;">
-        <a href= "/admin/items/new", style="text-decoration: none;">＋</a>
-      </button>
+      <div class="text-right">
+        <button type="button" class="btn btn-light rounded-circle p-0 shadow mb-5 bg-white rounded font-weight-bold" style="width:3rem;height:3rem;">
+          <a href= "/admin/items/new", style="text-decoration: none;"><strong>＋</strong></a>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <table class="table col-9  mx-auto">
+    <table class="table mx-auto">
       <thead style="background-color: #F5F5F5;">
         <tr>
           <th>商品ID</th>
@@ -42,7 +42,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-2 mx-auto">
+  <div class="col mx-auto">
     <%= paginate @items %>
   </div>
 </div>

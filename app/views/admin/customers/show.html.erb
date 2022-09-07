@@ -39,7 +39,7 @@
         <tr>
           <td class= "pb-3">退会ステータス</td>
           <td class= "pb-3">
-            <% if @customer.is_deleted == true %>
+            <% if @customer.is_deleted != true %>
               <span style="color: green;", class= "font-weight-bold">有効</span>
             <% else %>
               <span style="color: #C0C0C0;", class= "font-weight-bold">退会</span>
@@ -51,7 +51,7 @@
           <td>
             <div class="row">
             <div class="col-4">
-              <%= link_to '編集する', edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %>
+              <%= link_to '編集する', edit_admin_customer_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %>
             </div>
             <div class="col-6">
               <%= link_to '注文履歴一覧を見る', edit_admin_item_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %>
