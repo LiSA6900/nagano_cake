@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   }
   namespace :customers do
     resources :items, only: [:index, :show]
+    get "my_page" => "public/customers#show"
   end
 
 
