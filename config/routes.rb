@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  namespace :customers do
+  scope module: :public do
     resources :items, only: [:index, :show]
-    get "my_page" => "public/customers#show"
+    get "customers/my_page" => "customers#show"
   end
 
 

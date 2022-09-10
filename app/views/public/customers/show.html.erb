@@ -1,44 +1,57 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 my-5">
+    <div class="col-7 my-5 mx-5">
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">マイページ</h4>
     </div>
-  </div>
 
-  <div>
-    <table class="col-7 table-bordered">
-      <tbody>
-        <tr>
-          <td class= "pb-3">氏名</td>
-          <td class= "pb-3"><%= current_user.last_name %>　<%= current_user.first_name %></td>
-        </tr>
-        <tr>
-          <td class= "pb-3">フリガナ</td>
-          <td class= "pb-3"><%= current_user.last_name_kana %>　<%= current_user.first_name_kana %></td>
-        </tr>
-        <tr>
-          <td class= "pb-3">郵便番号</td>
-          <td class= "pb-3"><%= current_user.postal_code %></td>
-        </tr>
-        <tr>
-          <td class= "pb-3">住所</td>
-          <td class= "pb-3"><%= current_user.address %></td>
-        </tr>
-        <tr>
-          <td class= "pb-3">電話番号</td>
-          <td class= "pb-3"><%= current_user.telephone_number %></td>
-        </tr>
-        <tr>
-          <td class= "pb-3">メールアドレス</td>
-          <td class= "pb-3"><%= current_user.email %></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="col-4">
-      <p><strong>配送先</strong>
-      <%= link_to '一覧を見る', root_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %></p>
-      <p><strong>注文履歴</strong>
-      <%= link_to '一覧を見る', root_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %>
+  <div class="col-11">
+    <div class="mb-3">
+      <strong class="mr-4">登録情報</strong>
+      <%= link_to '編集する', root_path, class: "btn btn-success font-weight-bold px-4 btn-sm" %>
     </div>
+
+    <div class="my-page-table">
+      <table class=" my-page-table table-bordered mb-4">
+        <tbody>
+          <tr>
+            <td class= "p-2 table-active">氏名</td>
+            <td class= "py-2 px-3"><%= @customer.last_name %>　<%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class= "p-2 table-active">フリガナ</td>
+            <td class= "py-2 px-3"><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class= "p-2 table-active">郵便番号</td>
+            <td class= "py-2 px-3"><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td class= "p-2 table-active">住所</td>
+            <td class= "py-2 px-3"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class= "p-2 table-active">電話番号</td>
+            <td class= "py-2 px-3"><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class= "p-2 table-active">メールアドレス</td>
+            <td class= "py-2 px-3"><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td class="pb-2 pr-3"><strong>配送先</strong></td>
+          <td class="pb-2"><%= link_to '一覧を見る', root_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %></td>
+        </tr>
+        <tr>
+          <td class="pb-2 pr-3"><strong>注文履歴</strong></td>
+          <td class="pb-2"><%= link_to '一覧を見る', root_path, class: "btn btn-primary font-weight-bold px-4 btn-sm" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
   </div>
 </div>
