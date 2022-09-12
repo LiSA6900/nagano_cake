@@ -1,0 +1,25 @@
+<div class= "container">
+<div class="row">
+  <div class= "col-2">
+    <%= render 'public/shared/genre', genres: @genres %>
+  </div>
+
+  <div class= "col-10 pb-3 m-0">
+    <div>
+      <h1><strong>商品一覧</strong><small>(全<%= @items.count %>件)</small></h1>
+    </div>
+    <div>
+      <div class="font-weight-bold d-flex justify-content-between flex-wrap">
+        <% @items.each do |item| %>
+        <div class="col-3 mb-5">
+          <div><p><%= image_tag item.get_image(100,200) %></p></div>
+          <div><p><%= item.name %></p></div>
+          <div><p>¥<%= item.price.to_s(:delimited) %></p></div>
+        </div>
+        <% end %>
+      </div>
+        <%= paginate @items %></p>
+    </div>
+  </div>
+</div>
+</div>

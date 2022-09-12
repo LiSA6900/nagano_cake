@@ -7,7 +7,7 @@
         <h6 class="mb-4">退会する場合は、「退会する」をクリックしてください。</h6>
       <div class="mb-5">
         <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary font-weight-bold px-4 btn-sm mr-4" %>
-        <%= link_to "退会する", costomers_withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger font-weight-bold px-4 btn-sm" %>
+        <%= link_to "退会する", customers_withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger font-weight-bold px-4 btn-sm" %>
      </div>
     </div>
   </div>

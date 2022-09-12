@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 my-5">
+      <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">配送先登録/一覧</h4>
+    </div>
+
+    <div class="form-group col-11 mb-5">
+      <%= form_with model: @address, url:addresses_path, method: :post do |f| %>
+        <table class="field", style="width: 100%;">
+          <tbody>
+            <tr>
+              <td class="mb-2", style="width: 25%;">郵便番号(ハイフンなし)</td>
+              <td><%= f.text_field :postal_code, placeholder: "0000000", class: "form_cotrol mb-2" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="mb-2", style="width: 25%;">住所</td>
+              <td colspan="2"><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form_cotrol mb-2 col-11 pl-0"%></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="mb-2", style="width: 25%;">宛名</td>
+              <td><%= f.text_field :name, placeholder: "令和道子", class: "form_cotrol mb-2" %></td>
+              <td></td>
+              <td><%= f.submit '新規登録', class: "btn btn-success font-weight-bold px-4" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+    <div class="col-8 mb-4">
+      <table class="table-bordered", style="width: 100%;">
+        <thead>
+          <tr>
+            <td class="table-active py-3 pl-1", style="width: 15%">郵便番号</td>
+            <td class="table-active py-3 pl-1", style="width: 40%">住所</td>
+            <td class="table-active py-3 pl-1", style="width: 15%">宛名</td>
+            <td class="table-active py-3 pl-1", style="width: 30%"></td>
+          </tr>
+        </thead>
+        <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td class= "py-3 pl-1"><%= address.postal_code %></td>
+            <td class= "py-3 pl-1"><%= address.address %></td>
+            <td class= "py-3 pl-1"><%= address.name %></td>
+            <td colspan="2" class= "p-3">
+              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-primary font-weight-bold btn-sm mr-4" %>
+              <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger font-weight-bold btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
