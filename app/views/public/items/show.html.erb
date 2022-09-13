@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class= "col-2">
+      <%= render 'public/shared/genre', genres: @genres %>
+    </div>
+
+    <div class="col-4">
+      <%= image_tag @item.get_image(300,500) %>
+    </div>
+    <div class="col-6">
+      <h3 class= "pb-3"><strong><%= @item.name %></strong></h3>
+      <h5 class= "pb-3"><%= @item.introduction %></h5>
+      <h4 class= "pb-3">¥ <%= @item.price.floor.to_s(:delimited)*1.1 %><small> (税込)</small></h4>
+      <%= form_with model: @cart_items, url: cart_items_path do |f| %>
+        <div class="form_group d-flex">
+          <div class="amount mr-5">
+            <%= f.select :amount, *[1..10], class: "form_control mr-3", :prompt => "個数選択" %>
+          </div>
+          <div>
+            <%= f.hidden_field :item_id , value: @item.id %>
+            <%= f.submit 'カートに追加する', class: "btn btn-success font-weight-bold" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

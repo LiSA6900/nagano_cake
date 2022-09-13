@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     # 論理削除用のルーティング
     patch "customers/withdraw" => "customers#withdraw"
     resources :addresses, only: [:index, :create, :update, :destroy, :edit]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
 
