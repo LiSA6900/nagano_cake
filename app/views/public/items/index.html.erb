@@ -12,13 +12,11 @@
       <div class="font-weight-bold d-flex justify-content-between flex-wrap">
         <% @items.each do |item| %>
         <div class="col-3 mb-5">
-          <div>
-            <%= link_to item_path(item.id) do %>
-            <p><%= image_tag item.get_image(100,200) %>
-            <% end %></p>
-          </div>
+          <%= link_to item_path(item.id) do %>
+          <div><p><%= image_tag item.get_image(100,200) %></p></div>
           <div><p><%= item.name %></p></div>
           <div><p>¥<%= item.price.to_s(:delimited) %></p></div>
+           <% end %>
         </div>
         <% end %>
       </div>
