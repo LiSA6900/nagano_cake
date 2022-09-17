@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
   scope module: :public do
-    resources :items, only: [:index, :show]
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
@@ -17,13 +16,19 @@ Rails.application.routes.draw do
     get "customers/unsubscribe" => "customers#unsubscribe"
     # 論理削除用のルーティング
     patch "customers/withdraw" => "customers#withdraw"
+
+    resources :items, only: [:index, :show]
+
     resources :addresses, only: [:index, :create, :update, :destroy, :edit]
-    resources :cart_items, only: [:index, :create, :update, :destroy] do
-      collection do
-        delete 'destroy_all'
-      end
-    end
+
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
+    resources :cart_items, only: [:index, :create, :show]
+
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
+    resources :orders, only: [:new, :index, :create, :show]
   end
+
 
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

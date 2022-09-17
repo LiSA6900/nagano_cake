@@ -62,3 +62,8 @@ gem 'kaminari','~> 1.2.1'
 gem 'pry-rails'
 
 gem "enum_help"
+
+gem 'net-smtp'
+# ついでに以下の2つも追加しておく方が良さそう
+gem 'net-imap'
+gem 'net-pop'
