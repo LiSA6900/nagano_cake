@@ -1,3 +1,5 @@
 class Admin::HomesController < ApplicationController
-  get "/admin" => "homes#top", as: "top"
+  def top
+    @orders = Order.all
+  end
 end
