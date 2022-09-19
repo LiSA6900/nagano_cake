@@ -4,14 +4,14 @@
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">注文履歴詳細</h4>
     </div>
 
-    <div class="mb-4", style="width: 90%;">
+    <div class="col-12 mb-4">
       <div class="d-flex">
-        <p style="width:70%;"><strong>注文情報</strong></p>
-        <p style="width:20%;"><strong>請求情報</strong></p>
+        <p style="width:67%;"><strong>注文情報</strong></p>
+        <p style="width:32%;"><strong>請求情報</strong></p>
       </div>
       <tablev class="d-flex">
         <tr>
-          <table class="table-bordered mr-auto", style="width: 60%;">
+          <table class="col-7 table-bordered mr-auto">
             <tbody>
               <tr>
                 <td class="cart table-active", style="width: 20%;">注文日</td>
@@ -27,7 +27,7 @@
               </tr>
               <tr>
                 <td class="cart table-active", style="width: 20%;">支払方法</td>
-                <td style="class= "cart", width: 40%;"><%= @order.payment_method_i18n %></td>
+                <td class= "cart", style="width: 40%;"><%= @order.payment_method_i18n %></td>
               </tr>
               <tr>
                 <td class="cart table-active", style="width: 20%;">ステータス</td>
@@ -37,19 +37,19 @@
           </table>
         </tr>
         <tr>
-          <table class="table-bordered ml-auto", style="width: 30%;">
+          <table class="col-4 table-bordered ml-auto">
             <tbody>
               <tr>
-                <td class="table-active", style="width: 15%;">商品合計</td>
-                <td style="width: 15%;"><%= @order.price - @order.postage %></td>
+                <td class="order table-active", style="width: 15%;">商品合計</td>
+                <td class="order", style="width: 15%;"><%= (@order.price - @order.postage).to_s(:delimited) %></td>
               </tr>
               <tr>
-                <td class="table-active", style="width: 15%;">配送料</td>
-                <td style="width: 15%;"><%= @order.postage %></td>
+                <td class="order table-active", style="width: 15%;">配送料</td>
+                <td class="order", style="width: 15%;"><%= @order.postage.to_s(:delimited) %></td>
               </tr>
               <tr>
-                <td class="table-active", style="width: 15%;">ご請求額</td>
-                <td style="width: 15%;"><%= @order.price %></td>
+                <td class="order table-active", style="width: 15%;"><strong>ご請求額</strong></td>
+                <td class="order", style="width: 15%;"><%= (@order.price).to_s(:delimited) %></td>
               </tr>
             </tbody>
           </table>
@@ -71,7 +71,7 @@
             <td class="py-3"><%= order_detail.item.name %></td>
             <td class="py-3"><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
             <td class="py-3"><%= order_detail.amount %></td>
-            <td class="py-3"><%=order_detail.item.subtotal %></td>
+            <td class="py-3"><%= (order_detail.item.with_tax_price*order_detail.amount).to_s(:delimited) %></td>
           <% end %>
         </tr>
       </table>
