@@ -8,27 +8,27 @@
       <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
         <h5><strong>支払方法</strong></h5>
         <div class="form_group ml-5">
-         <%= f.radio_button :payment_method, "1" %>
-         <%=f.label :payment_method, "クレジットカード" %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
         </div>
         <div class="form_group ml-5">
-           <%= f.radio_button :payment_method, "2" %>
-           <%=f.label :payment_method, "銀行振込" %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(2) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
         </div>
         <h5><strong>お届け先</strong></h5>
         <div class="form_group ml-5">
-           <%= f.radio_button :address_display, "address_display" %>
+           <%= f.radio_button :address_display, 0 %>
            <%=f.label :address_display, "ご自身の住所" %>
            <p class="ml-4">〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
            <p class="ml-4"><%= current_customer.last_name %><%= current_customer.first_name %></p>
         </div>
         <div class="form_group ml-5">
-           <%= f.radio_button :address_display, "address_display" %>
+           <%= f.radio_button :address_display, 1 %>
            <%= f.label :address_display, "登録済住所から選択" %>
            <p class="ml-4"><%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %></p>
         </div>
         <div class="form_group ml-5">
-           <%= f.radio_button :address_display, "address_display" %>
+           <%= f.radio_button :address_display, 2 %>
            <%=f.label :address_display, "新しいお届け先" %>
         </div>
         <div class="form-group ml-5 d-flex">
@@ -44,6 +44,7 @@
           <div class="col-6"><%= f.text_field :name, placeholder: "令和道子", class: "form_cotrol" %></div>
         </div>
         <div class="mx-auto col-4">
+          <%= f.hidden_field :customer_id %>
           <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
         </div>
       <% end %>

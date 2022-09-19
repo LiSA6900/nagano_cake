@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Order.new(order_params)
+    @order = Order.new
   end
 
   def confirm
@@ -9,21 +9,37 @@ class Public::OrdersController < ApplicationController
     @cart_items.each do |cart|
       @total += cart.subtotal
     end
-    @order = Order.find(params[:id])
-    if session[:customer]["payment_method"] == "credit_card"
-      @payment_method = "クレジットカード"
-    else session[:customer]["payment_method"] == "transfer"
-       @payment_method = "銀行振込"
+    #支払方法の表示は不要
+    # if params[:order]["payment_method"] == "1"
+    #   @payment_method = "クレジットカード"
+    # elsif params[:order]["payment_method"] == "2"
+    #   @payment_method = "銀行振込"
+    # end
+    #お届け先の表示
+    @order = Order.new(order_params)
+    if params[:order][:address_display] == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_display] == "1"
+      @order.postal_code = Address.find(params[:order][:address_id]).postal_code
+      @order.address = Address.find(params[:order][:address_id]).address
+      @order.name = Address.find(params[:order][:address_id]).name
+    elsif params[:order][:address_display] == "2"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address =  params[:order][:address]
+      @order.name =  params[:order][:name]
     end
-  end
-
-  def complete
   end
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
-    redirect_to orders_confirm_path
+    redirect_to orders_complete_path
+  end
+
+  def complete
   end
 
   def index
