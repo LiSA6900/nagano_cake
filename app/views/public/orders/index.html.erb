@@ -34,9 +34,11 @@
           <td class= "cart"><%= order.price %>円</td>
           <td class= "cart"><%= order.order_status_i18n %></td>
           <td class= "cart">
-           <%= link_to "表示する", root_path, class: "btn btn-primary font-weight-bold btn-sm" %>
+           <%= link_to "表示する", order_path(order.id), class: "btn btn-primary font-weight-bold btn-sm" %>
           </td>
         </tr>
       <% end %>
       </tbody>
     </table>
+  </div>
+</div>
