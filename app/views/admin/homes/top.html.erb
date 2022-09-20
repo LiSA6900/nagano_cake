@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 my-5">
+    <div class="col-10 my-4 mx-auto">
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">注文履歴一覧</h4>
     </div>
   </div>
 
   <div class="row">
-    <table class="table col-9 mx-auto">
+    <table class="table col-10 mx-auto">
       <thead style="background-color: #F5F5F5;">
         <tr>
           <th>購入日時</th>
@@ -18,15 +18,14 @@
       <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at %></td>
+          <td><%= order.created_at.strftime('%Y/%m/%d %T') %></td>
           <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-          <td><%= orders.count %></td>
-          <td><%= order.order_status %></td>
+          <td><%= order.order_details.sum(:amount) %></td>
+          <td><%= order.order_status_i18n %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div>
-  <div class="col-2 mx-auto">
-    <%= paginate @orders %>
+  <%= paginate @orders %>
 </div>

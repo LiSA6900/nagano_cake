@@ -28,10 +28,10 @@
           </td>
           <td class= "cart">
             <% order.order_details.each do |order_detail| %>
-              <%= order_detail.item.name %>
+              <%= order_detail.item.name %><br>
             <% end %>
           </td>
-          <td class= "cart"><%= order.price %>円</td>
+          <td class= "cart"><%= (order.price + order.postage).to_s(:delimited) %>円</td>
           <td class= "cart"><%= order.order_status_i18n %></td>
           <td class= "cart">
            <%= link_to "表示する", order_path(order.id), class: "btn btn-primary font-weight-bold btn-sm" %>

@@ -15,7 +15,7 @@
             <tbody>
               <tr>
                 <td class="cart table-active", style="width: 20%;">注文日</td>
-                <td class= "cart", style="width: 40%;"><%= @order.created_at.strftime('%Y/%m/%d')  %></td>
+                <td class= "cart", style="width: 40%;"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
               </tr>
               <tr>
                 <td class="cart table-active", style="width: 20%;">配送先</td>
@@ -41,7 +41,7 @@
             <tbody>
               <tr>
                 <td class="order table-active", style="width: 15%;">商品合計</td>
-                <td class="order", style="width: 15%;"><%= (@order.price - @order.postage).to_s(:delimited) %></td>
+                <td class="order", style="width: 15%;"><%= (@order.price).to_s(:delimited) %></td>
               </tr>
               <tr>
                 <td class="order table-active", style="width: 15%;">配送料</td>
@@ -49,7 +49,7 @@
               </tr>
               <tr>
                 <td class="order table-active", style="width: 15%;"><strong>ご請求額</strong></td>
-                <td class="order", style="width: 15%;"><%= (@order.price).to_s(:delimited) %></td>
+                <td class="order", style="width: 15%;"><%= (@order.price + @order.postage).to_s(:delimited) %></td>
               </tr>
             </tbody>
           </table>
@@ -60,20 +60,22 @@
     <div class="col-12">
       <p><strong>注文内容</strong></p>
       <table class="table-bordered">
-        <tr>
-          <td class="col-6 table-active py-3">商品</td>
-          <td class="col-2 table-active py-3">単価（税込）</td>
-          <td class="col-2 table-active py-3">個数</td>
-          <td class="col-2 table-active py-3">小計</td>
-        </tr>
-        <tr>
+        <tbody>
+          <tr>
+            <td class="col-6 table-active py-3">商品</td>
+            <td class="col-2 table-active py-3">単価（税込）</td>
+            <td class="col-2 table-active py-3">個数</td>
+            <td class="col-2 table-active py-3">小計</td>
+          </tr>
           <% @order.order_details.each do |order_detail| %>
-            <td class="py-3"><%= order_detail.item.name %></td>
-            <td class="py-3"><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
-            <td class="py-3"><%= order_detail.amount %></td>
-            <td class="py-3"><%= (order_detail.item.with_tax_price*order_detail.amount).to_s(:delimited) %></td>
+            <tr>
+              <td class="py-3"><%= order_detail.item.name %></td>
+              <td class="py-3"><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
+              <td class="py-3"><%= order_detail.amount %></td>
+              <td class="py-3"><%= (order_detail.item.with_tax_price*order_detail.amount).to_s(:delimited) %></td>
+            </tr>
           <% end %>
-        </tr>
+        </tbody>
       </table>
     </div>
   </div>
