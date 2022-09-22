@@ -28,6 +28,11 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_item_path(@item.id)
   end
 
+  def search
+  @items = Item.search(params[:keyword])
+  @keyword = params[:keyword]
+  render "index"
+  end
 
   private
 

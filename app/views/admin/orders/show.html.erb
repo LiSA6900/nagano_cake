@@ -40,33 +40,30 @@
     </table>
   </div>
   <div class="d-flex col-12">
-    <div class="col-9">
+    <div class="col-10">
       <table class="table">
         <thead style="background-color: #F5F5F5;">
           <tr>
-            <td class= "pb-3"><strong>商品名</strong></td>
-            <td class= "pb-3"><strong>単価（税込）</strong></td>
-            <td class= "pb-3"><strong>数量</strong></td>
-            <td class= "pb-3"><strong>小計</strong></td>
-            <td class= "pb-3"><strong>製作ステータス</strong></td>
-            <td class= "pb-3"></td>
+            <td class= "p-3"><strong>商品名</strong></td>
+            <td class= "p-3"><strong>単価（税込）</strong></td>
+            <td class= "p-3"><strong>数量</strong></td>
+            <td class= "p-3"><strong>小計</strong></td>
+            <td class= "p-3"><strong>製作ステータス</strong></td>
           </tr>
         </thead>
         <tbody>
           <% @order_details.each do |order_detail| %>
           <tr>
-            <td class= "pb-3"><%= order_detail.item.name %></td>
-            <td class= "pb-3"><%= order_detail.item.with_tax_price %></td>
-            <td class= "pb-3"><%= order_detail.amount %></td>
-            <td class= "pb-3"><%= order_detail.item.with_tax_price * order_detail.amount %></td>
-            <%= form_with model: @order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
-            <td class= "pb-3">
-              <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+            <td class= "p-3"><%= order_detail.item.name %></td>
+            <td class= "p-3"><%= order_detail.item.with_tax_price %></td>
+            <td class= "p-3"><%= order_detail.amount %></td>
+            <td class= "p-3"><%= order_detail.item.with_tax_price * order_detail.amount %></td>
+            <td class= "p-3">
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+                <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+                <%= f.submit "更新", class: "btn btn-success font-weight-bold px-2 btn-sm ml-5" %>
+              <% end %>
             </td>
-            <td>
-              <%= f.submit "更新", class: "btn btn-success font-weight-bold px-2 btn-sm" %>
-            </td>
-            <% end %>
           </tr>
           <% end %>
         </tbody>
