@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
   scope module: :public do
     get "customers/my_page" => "customers#show"
-    get "customers/informationrails /edit" => "customers#edit"
+    get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
     # 退会確認画面
     get "customers/unsubscribe" => "customers#unsubscribe"
