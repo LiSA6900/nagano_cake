@@ -7,8 +7,10 @@ class Public::CartItemsController < ApplicationController
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.save
       redirect_to cart_items_path
-    else @cart_item.save
+    elsif @cart_item.save
       redirect_to cart_items_path
+    else
+      render index
     end
   end
 

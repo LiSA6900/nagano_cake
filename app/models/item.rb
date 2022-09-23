@@ -20,4 +20,9 @@ class Item < ApplicationRecord
     where(["name like? OR introduction like?" "%#{keyword}%", "%#{keyword}%"])
   end
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+  validates :is_active, presence: true
+
 end
