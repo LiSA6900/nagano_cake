@@ -17,7 +17,7 @@
   <% end %>
 
   <div class="form-group col-11 mx-auto mb-4">
-      <%= form_with model:@customer, url: admin_customer_path(@customer.id) do |f| %>
+    <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
     <table class="field">
       <tbody>
         <tr class="main-form">
@@ -58,11 +58,13 @@
         <tr class="main-form">
           <td class="main-item">会員ステータス</td>
           <td class="main-item">
-            <h5><%= f.radio_button :is_deleted, "false" %>
-            <%= f.label :is_deleted, "有効" %>
-            <span>　</span>
-            <%= f.radio_button :is_deleted, "ture" %>
-            <%= f.label :is_deleted, "退会" %></h5>
+            <h5>
+              <%= f.radio_button :is_deleted, "false", checked: true %>
+              <%= f.label :is_deleted, "有効" %>
+              <span>　</span>
+              <%= f.radio_button :is_deleted, "ture" %>
+              <%= f.label :is_deleted, "退会" %>
+            </h5>
           </td>
           <td></td>
         </tr>
@@ -72,7 +74,7 @@
           <td></td>
         </tr>
       </tbody>
-      <% end %>
+    <% end %>
     </table>
   </div>
 </div>
