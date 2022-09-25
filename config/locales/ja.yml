@@ -19,3 +19,10 @@ ja:
         production: "製作中"
         completion: "製作完了"
 
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: “..."

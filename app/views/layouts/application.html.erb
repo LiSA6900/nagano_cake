@@ -74,11 +74,11 @@
                 <form>
                   <%= form_with model: @item, url: search_path, method: :get do |f| %>
                     <%= f.text_field :search, placeholder: "Search" %>
-                    <div class="button">
-                      <%= f.button :type => "submit", :name => nil do %>
-                        <i class="fas fa-search"></i>
-                      <% end %>
-                    </div>
+                  <div class="button">
+                    <%= f.button :type => "submit", :name => nil do %>
+                      <i class="fas fa-search"></i>
+                    <% end %>
+                  </div>
                   <% end %>
                 </form>
               </div>
