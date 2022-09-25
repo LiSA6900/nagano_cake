@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+   before_action :authenticate_customer!, except: [:index, :show, :search]
 
   def index
     @items = Item.all.order(id:"DESC").page(params[:page]).per(8)
@@ -12,9 +13,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])
-    @keyword = params[:keyword]
-    render "index"
+    @items = Item.search(params[:search]).order(id:"DESC").page(params[:page]).per(8)
+    @genres = Genre.all
+    render :index
   end
 
 

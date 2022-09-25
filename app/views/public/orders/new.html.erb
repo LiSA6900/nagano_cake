@@ -4,7 +4,7 @@
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">注文情報入力</h4>
     </div>
 
-    <div class="col-11">
+    <div class="col-12">
       <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
         <h5><strong>支払方法</strong></h5>
         <div class="form_group ml-5">
@@ -17,9 +17,9 @@
         </div>
         <h5><strong>お届け先</strong></h5>
         <div class="form_group ml-5">
-           <%= f.radio_button :address_display, 0 %>
+           <%= f.radio_button :address_display, 0, checked: true %>
            <%=f.label :address_display, "ご自身の住所" %>
-           <p class="ml-4">〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
+           <p class="ml-4 mb-0">〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
            <p class="ml-4"><%= current_customer.last_name %><%= current_customer.first_name %></p>
         </div>
         <div class="form_group ml-5">

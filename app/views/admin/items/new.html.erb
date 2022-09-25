@@ -5,9 +5,20 @@
     </div>
   </div>
 
+  <% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <div class="row-error">
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <div class="form-group row">
     <div class="col-8 mx-auto">
-      <%= form_with model: @item, url:admin_items_path do |f| %>
+      <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
         <div class="row" >
           <div class="col-3">
           <label for="itemImage">商品画像</label>
@@ -54,7 +65,7 @@
           <label for="itemStatus">販売ステータス</label>
           </div>
           <div class="col-5 mb-3 mb-2">
-            <%= f.radio_button :is_active, "ture" %>
+            <%= f.radio_button :is_active, "ture", checked: true %>
             <%= f.label :is_active, "販売中" %>
 
             <%= f.radio_button :is_active, "false" %>

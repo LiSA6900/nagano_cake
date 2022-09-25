@@ -5,11 +5,22 @@
     </div>
   </div>
 
+  <% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のエラーが発生しました
+  <div class="row-error">
+    <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
     <div class="row mb-5">
     <div class="col-10">
       <%= form_with model: @genre, url: admin_genre_path do |f| %>
         <strong>ジャンル名</strong>
-          <%= f.text_field :name, placeholder: "ジャンル名", class: "mx-5" %>
+        <%= f.text_field :name, placeholder: "ジャンル名", class: "mx-5" %>
         <%= f.submit '変更を保存', class: "btn btn-success font-weight-bold" %>
       <% end %>
     </div>

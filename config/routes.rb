@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about" => "public/homes#about"
-  get "search" => "items#search"
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     # 論理削除用のルーティング
     patch "customers/withdraw" => "customers#withdraw"
 
+    get "search" => "items#search"
     resources :items, only: [:index, :show]
 
     resources :addresses, only: [:index, :create, :update, :destroy, :edit]

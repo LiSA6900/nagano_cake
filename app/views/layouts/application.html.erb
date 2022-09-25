@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://kit.fontawesome.com/*******.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,70 +13,78 @@
   <body>
     <header>
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <p class="logo">LOGO</p>
-          <% if customer_signed_in? %>
-            <p class="m-5 align-self-center">ようこそ、<%= current_customer.last_name %>さん！</p>
-          <% end %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=“#navbarNavDropdown” aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-           <div class="collapse navbar-collapse" id=“navbarNavDropdown”>
-            <ul class="navbar-nav ml-auto">
+        <div class="row">
+          <nav class="col-12 navbar navbar-expand-lg navbar-light">
+            <p class="logo col-2">
+              <%=link_to "LOGO", root_path, class: 'nav-link text-dark text-center' %>
+            </p>
             <% if customer_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'カート', cart_items_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </li>
-            <% elsif admin_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '注文履歴一覧', admin_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
-              </li>
+              <p class="col-3 m-5 align-self-center">ようこそ、<%= current_customer.last_name %>さん！</p>
             <% end %>
-            </ul>
-          </div>
-          <div class="search-form">
-            <%= form_with url: search_path, method: :get, local: true do |f| %>
-              <%= f.text_field :keyword, value: @keyword, placeholder: "Seach" %>
-              <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=“#navbarNavDropdown” aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+             <div class="col-7 collapse navbar-collapse d-flex flex-column ml-auto" id=“navbarNavDropdown”>
+              <ul class="navbar-nav mb-4 ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'カート', cart_items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '注文履歴一覧', admin_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+                </li>
               <% end %>
-            <% end %>
-          </div>
-        </nav>
+              </ul>
+              <div class="search-form ml-auto">
+                <form>
+                  <%= form_with model: @item, url: search_path, method: :get do |f| %>
+                    <%= f.text_field :search, placeholder: "Search" %>
+                    <div class="button">
+                      <%= f.button :type => "submit", :name => nil do %>
+                        <i class="fas fa-search"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
 

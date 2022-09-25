@@ -90,10 +90,10 @@
 }
 
 .logo{
-  font-size: 30px;
+  font-size: 33px;
   border: 1px solid black;
   border-radius: 3px;
-  padding: 2px 40px;
+  padding: 0 30px;
   margin: 30px 0;
 }
 
@@ -117,4 +117,30 @@ footer{
 
 .my-page-table{
   width: 700px;
+}
+
+// .genre-form{
+//   min-height: 10vh;
+// }
+
+.field_with_errors{
+  display: contents;
+}
+
+.row-error{
+  display: list-item;
+}
+
+
+.search-form form{
+  display: block;
+  position: relative;
+}
+
+.search-form button{
+  position: absolute;
+  right: 5px;
+  top: 5%;
+  border: none;
+  background: transparent;
 }

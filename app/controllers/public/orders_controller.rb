@@ -1,8 +1,12 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
   end
 
+  #入力 → 確認画面 → 保存 を実装（バリデーション含む）
+  #https://qiita.com/ngron/items/d55aac6e81a9fb2fe81c
   def confirm
     @cart_items = CartItem.all
     @total = 0
@@ -35,25 +39,29 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
-    # order_detailsに保存
-    current_customer.cart_items.each do |cart_item| #カート内商品を1つずつ取り出しループ
-      @order_detail = OrderDetail.new  #初期化宣言
-      @order_detail.order_id = @order.id #order注文idを紐付けておく
-      @order_detail.item_id = cart_item.item_id #カート内商品idを注文商品idに代入
-      @order_detail.amount = cart_item.amount  #カート内商品の個数を注文商品の個数に代入
-      @order_detail.price = cart_item.item.price.floor.to_s(:delimited)*1.1 #消費税込みに計算して代入
-      @order_detail.save #注文商品を保存
+    if @order.save
+      # order_detailsに保存
+      current_customer.cart_items.each do |cart_item| #カート内商品を1つずつ取り出しループ
+        @order_detail = OrderDetail.new  #初期化宣言
+        @order_detail.order_id = @order.id #order注文idを紐付けておく
+        @order_detail.item_id = cart_item.item_id #カート内商品idを注文商品idに代入
+        @order_detail.amount = cart_item.amount  #カート内商品の個数を注文商品の個数に代入
+        @order_detail.price = cart_item.item.price.floor.to_s(:delimited)*1.1 #消費税込みに計算して代入
+        @order_detail.save #注文商品を保存
+      end
+      current_customer.cart_items.destroy_all  #カートの中身を削除
+      redirect_to orders_complete_path
+    else
+      @order = Order.new
+      render :new
     end
-    current_customer.cart_items.destroy_all  #カートの中身を削除
-    redirect_to orders_complete_path
   end
 
   def complete
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.order(id:"DESC")
   end
 
   def show

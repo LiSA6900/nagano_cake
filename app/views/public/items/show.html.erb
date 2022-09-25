@@ -15,7 +15,7 @@
         <div class="form_group d-flex">
           <div class="amount mr-5">
             <%= f.hidden_field :item_id , value: @item.id %>
-            <%= f.select :amount, *[1..10], class: "form_control mr-3", :prompt => "個数選択" %>
+            <%= f.select :amount, *[1..10], class: "form_control" %>
           </div>
           <div>
             <%= f.submit 'カートに追加する', class: "btn btn-success font-weight-bold" %>

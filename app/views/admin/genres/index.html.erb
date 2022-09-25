@@ -1,18 +1,37 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 my-5">
+    <div class="col-7 mb-3 mt-5">
     <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3">ジャンル<strong>一覧・追加</strong></h4>
+    </div>
+    <div>
     </div>
   </div>
 
-  <div class="row mb-5">
-    <div class="col-10">
+  <!--<div class="genre-form">-->
+  <% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のエラーが発生しました
+  <div class="row-error">
+    <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <!--</div>-->
+
+  <div class="row">
+  <div class="col-7 my-5">
+  <!--<div class="row mb-2">-->
+    <!--<div class="col-10">-->
       <%= form_with model: @genre, url: admin_genres_path do |f| %>
         <strong>ジャンル名</strong>
-          <%= f.text_field :name, placeholder: "ジャンル名", class: "mx-5" %>
-        <%= f.submit '新規登録', class: "btn btn-success font-weight-bold px-4" %>
+        <%= f.text_field :name, placeholder: "ジャンル名" %>
+        <%= f.submit '新規登録', class: "btn btn-success" %>
       <% end %>
-    </div>
+    <!--</div>-->
+  <!--</div>-->
+  </div>
   </div>
 
   <div class="row">

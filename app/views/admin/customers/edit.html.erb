@@ -3,65 +3,76 @@
     <div class="col-7 my-5">
       <h4 style="background-color: #F5F5F5;", class="d-inline-flex px-3"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h4>
     </div>
+  </div>
 
-    <div class="form-group col-11 mx-auto mb-4">
-        <%= form_with model:@customer, url: admin_customer_path(@customer.id) do |f| %>
-      <table class="field">
-        <tbody>
-          <tr class="main-form">
-            <td class="main-item">会員ID</td>
-            <td><%= @customer.id %></td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">氏名</td>
-            <td class="main-item"><%= f.text_field :last_name, class: "form-control" %></td>
-            <td><%= f.text_field :first_name, class: "form-control" %></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">フリガナ</td>
-            <td class="main-item"><%= f.text_field :last_name_kana, class: "form-control" %></td>
-            <td><%= f.text_field :first_name_kana, class: "form-control" %></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">郵便番号</td>
-            <td class="main-item"><%= f.text_field :postal_code, class: "form-control" %></td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">住所</td>
-            <td colspan="2"><%= f.text_field :address, class: "form-control" %></td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">電話番号</td>
-            <td class="main-item"><%= f.text_field :telephone_number, class: "form-control" %></td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">メールアドレス</td>
-            <td class="main-item"><%= f.email_field :email, class: "form-control" %></td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td class="main-item">会員ステータス</td>
-            <td class="main-item">
-              <h5><%= f.radio_button :is_deleted, "false" %>
-              <%= f.label :is_deleted, "有効" %>
-              <span>　</span>
-              <%= f.radio_button :is_deleted, "ture" %>
-              <%= f.label :is_deleted, "退会" %></h5>
-            </td>
-            <td></td>
-          </tr>
-          <tr class="main-form">
-            <td></td>
-            <td><%= f.submit '変更を保存', class: "btn btn-success font-weight-bold px-4 btn-lg" %></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
+  <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <div class="row-error">
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group col-11 mx-auto mb-4">
+      <%= form_with model:@customer, url: admin_customer_path(@customer.id) do |f| %>
+    <table class="field">
+      <tbody>
+        <tr class="main-form">
+          <td class="main-item">会員ID</td>
+          <td><%= @customer.id %></td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">氏名</td>
+          <td class="main-item"><%= f.text_field :last_name, class: "form-control" %></td>
+          <td><%= f.text_field :first_name, class: "form-control" %></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">フリガナ</td>
+          <td class="main-item"><%= f.text_field :last_name_kana, class: "form-control" %></td>
+          <td><%= f.text_field :first_name_kana, class: "form-control" %></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">郵便番号</td>
+          <td class="main-item"><%= f.text_field :postal_code, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">住所</td>
+          <td colspan="2"><%= f.text_field :address, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">電話番号</td>
+          <td class="main-item"><%= f.text_field :telephone_number, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">メールアドレス</td>
+          <td class="main-item"><%= f.email_field :email, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td class="main-item">会員ステータス</td>
+          <td class="main-item">
+            <h5><%= f.radio_button :is_deleted, "false" %>
+            <%= f.label :is_deleted, "有効" %>
+            <span>　</span>
+            <%= f.radio_button :is_deleted, "ture" %>
+            <%= f.label :is_deleted, "退会" %></h5>
+          </td>
+          <td></td>
+        </tr>
+        <tr class="main-form">
+          <td></td>
+          <td><%= f.submit '変更を保存', class: "btn btn-success font-weight-bold px-4 btn-lg" %></td>
+          <td></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
   </div>
 </div>

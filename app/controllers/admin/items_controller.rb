@@ -1,16 +1,21 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def new
     @item = Item.new
   end
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_item_path(@item)
+    if @item.save
+      redirect_to admin_item_path(@item)
+    else
+      render :new
+    end
   end
 
   def index
-    @items = Item.page(params[:page])
+    @items = Item.order(id:"DESC").page(params[:page])
     @item = Item.new
   end
 
@@ -24,14 +29,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admin_item_path(@item.id)
-  end
-
-  def search
-  @items = Item.search(params[:keyword])
-  @keyword = params[:keyword]
-  render "index"
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   private

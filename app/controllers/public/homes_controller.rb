@@ -1,4 +1,6 @@
 class Public::HomesController < ApplicationController
+  before_action :authenticate_customer!, except: [:top, :about]
+
   def top
     @genres = Genre.all
     @items = Item.all.order(id:"DESC").limit(4)

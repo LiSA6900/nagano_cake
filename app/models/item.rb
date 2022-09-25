@@ -16,13 +16,17 @@ class Item < ApplicationRecord
     (price*1.1).floor
   end
 
-  def self.search(keyword)
-    where(["name like? OR introduction like?" "%#{keyword}%", "%#{keyword}%"])
+  def self.search(search)
+    if search
+      Item.where(['name LIKE ?', "%#{search}%"])
+    else
+      Item.all
+    end
   end
 
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  validates :is_active, presence: true
+  validates :is_active, inclusion:{in: [true, false]}
 
 end
