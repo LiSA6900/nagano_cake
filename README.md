@@ -1,24 +1,46 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<!--This README would normally document whatever steps are necessary to get the-->
+<!--application up and running.-->
 
-Things you may want to cover:
+<!--Things you may want to cover:-->
 
-* Ruby version
+#nagano_cake
+* 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト。
+* 元々近隣住民が顧客だったが、昨年始めたInstagramから人気となり、全国から注文が来るようになった。InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。
 
-* System dependencies
+#URL
+####https://github.com/LiSA6900/nagano_cake
 
-* Configuration
+#Dependency
+* ruby '3.1.2'
+* Ruby on rails (6.1.7)
+* HTML＆CSS
+* Javascript
+* bootstrap4
+* fortawesome
 
-* Database creation
+#Usage
+####ユーザー側実装機能
+* 顧客は新規登録、ログイン、ログアウト、退会、商品一覧・商品詳細画面のみ閲覧ができる
+* 会員のログインはメールアドレスとパスワードで行う
+* 会員がログインするとヘッダーにユーザー名が入ったメッセージを表示する
+* 複数の商品をカートに入れることができ、カート内で商品の数量変更、商品削除、カート内商品全削除が可能
+* 会員はマイページより会員情報の閲覧・編集、注文商品一覧、配送先の閲覧・編集ができる
+* 会員の退会は会員情報の編集からできる
+* 商品は税込価格で表示される
 
-* Database initialization
+####管理者側実装機能
+* 管理者のログインはメールアドレスとパスワードで行う
+* 商品の新規登録・編集(販売ステータスの編集を含む)が行える
+* ジャンルを追加・編集できる
+* ユーザー・商品・注文履歴の一覧が確認できる
+* 会員登録されているユーザー情報の閲覧・編集・退会処理が行える
+* 注文詳細画面で支払ステータスの変更、制作ステータスの変更ができる
+* 商品は税込価格で表示される
 
-* How to run the test suite
+#Author
+* 山田麻奈
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
