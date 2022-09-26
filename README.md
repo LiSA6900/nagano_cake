@@ -17,7 +17,7 @@
 * Ruby on rails (6.1.7)
 * HTML＆CSS
 * Javascript
-* bootstrap4
+* bootstrap 4
 * fortawesome
 
 #Usage
