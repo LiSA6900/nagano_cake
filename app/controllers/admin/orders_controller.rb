@@ -9,6 +9,10 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      #注文ステータスが「入金確認」になったら製作ステータスを「製作待ち」に変更する
+      if @order.order_status == "paid"
+        @order.order_details.update_all(making_status: "waiting_production")
+      end
       redirect_to admin_order_path(@order)
     else
       render :show
